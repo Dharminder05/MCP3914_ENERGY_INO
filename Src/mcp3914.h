@@ -1,7 +1,7 @@
 /*
   MCP3914.h - Library for the MCP3914.
   Version 1.0
-  Created by Dharminder, May 10, 2018.
+  Created by Dharminder, June 1, 2022.
 */
 
 #ifndef MCP3914_h
