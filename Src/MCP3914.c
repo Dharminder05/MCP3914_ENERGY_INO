@@ -1,12 +1,12 @@
 #include "Arduino.h"
 #include "SPI.h"
 #include "MCP3914.h"
-MCP3914 :: MCP3914(){
+MCP3914::MCP3914(){
 //Constructor
 }
 
 //Initializes SPI and saves pin variables
-void MCP3914 :: begin(int _CLOCK_PIN, int _CS_PIN)
+void MCP3914::begin(int _CLOCK_PIN, int _CS_PIN)
 {
 	CLOCK_PIN = _CLOCK_PIN;
 	CS_PIN = _CS_PIN;
@@ -22,7 +22,7 @@ void MCP3914 :: begin(int _CLOCK_PIN, int _CS_PIN)
 }
 
 //Generates 4MHZ-Clock at pin 0C1A. 
-void MCP3914 :: generate_CLK(void)
+void MCP3914::generate_CLK(void)
 {
 	pinMode(CLOCK_PIN, OUTPUT);             //We can only toggle Output Compare Pin OC1A
 	//Set CS1[2:0] in Timer1ControlRegisterB to '001' to count without a prescaler.
