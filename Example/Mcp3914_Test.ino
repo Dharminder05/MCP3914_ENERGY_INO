@@ -21,18 +21,17 @@ void setup() {
 
   REGISTER_SETTINGS settings = {};
   //PHASE-SETTINGS
-  settings.PHASE0    = 0;           //Phase shift between CH6/CH7 and CH5/CH4 is 0
-  settings.PHASE1    = 0;           //Phase shift between CH3/CH2 and CH1/CH0 is 0
+  settings.PHASE0     = 0;           //Phase shift between CH6/CH7 and CH5/CH4 is 0
+  settings.PHASE1     = 0;           //Phase shift between CH3/CH2 and CH1/CH0 is 0
   //GAIN-SETTINGS
-  settings.PGA_CH7   = 0b000;      //CH7 gain is 1
-  settings.PGA_CH6   = 0b000;      //CH6 gain is 1
-  settings.PGA_CH5   = 0b000;      //CH5 gain is 1
-  settings.PGA_CH4   = 0b000;      //CH4 gain is 1
-  settings.PGA_CH3   = 0b000;      //CH3 gain is 1
-  settings.PGA_CH2   = 0b000;      //CH2 gain is 1 
-  settings.PGA_CH1   = 0b000;      //CH1 gain is 1
-  settings.PGA_CH0   = 0b000;      //CH0 gain is 1
-  settings.BOOST     = 0b10;       //Current boost is 1
+  settings.PGA_CH7    = 0b000;      //CH7 gain is 1
+  settings.PGA_CH6    = 0b000;      //CH6 gain is 1
+  settings.PGA_CH5    = 0b000;      //CH5 gain is 1
+  settings.PGA_CH4    = 0b000;      //CH4 gain is 1
+  settings.PGA_CH3    = 0b000;      //CH3 gain is 1
+  settings.PGA_CH2    = 0b000;      //CH2 gain is 1 
+  settings.PGA_CH1    = 0b000;      //CH1 gain is 1
+  settings.PGA_CH0    = 0b000;      //CH0 gain is 1
   //STATUSCOM-SETTINGS
   settings.READ       = 0b10;       //Adress counter loops register types//No modulator output enabled
   settings.WRITE      = 0b1;        //Adress counter loops entire register map
@@ -42,18 +41,22 @@ void setup() {
   settings.WIDTH_DATA = 0b01;       //All Channel are in 24bit-mode
   settings.EN_CRCCOM  = 0b0;        //Digital offset calibration on both channels disabled
   settings.EN_INT     = 0b0;        //Group delay on both channels disabled
-  settings.DRSTATUS   = 0b0;
+  settings.DRSTATUS   = 0b1;
   //CONFIG-SETTINGS
-  settings.PRE       = 0b00;       //AMCLK = MCLK
-  settings.OSR       = 0b011;      //Oversamplingratio is set to 256
-  settings.DITHER    = 0b11;       //Dithering on both channels maximal
-  settings.AZ_FREQ   = 0b0;        //Auto-zeroing running at lower speed
-  settings.RESET     = 0b00;       //Neither ADC in Reset mode
-  settings.SHUTDOWN  = 0b00;       //Neither ADC in Shutdown
-  settings.VREFEXT   = 0b0;        //Internal voltage reference enabled
-  settings.CLKEXT    = 0b1;        //External clock drive on OSC1-Pin enabled
-
-  mcp3914.configure(settings);     //Configure the MCP3914 with the settings above
+  settings.EN_OFFCAL   = 0b0;       //24-Bit Digital Offset Error Calibration on All Channels Enable bit
+  settings.EN_GAINCAL  = 0b0;       //24-Bit Digital Gain Error Calibration on All Channels Enable/Disable bit
+  settings.DITHER      = 0b11;      //Dithering on both channels maximal
+  settings.BOOST       = 0b10;      //Current boost is 1
+  settings.PRE         = 0b00;      //AMCLK = MCLK
+  settings.OSR         = 0b011;     //Oversampling Ratio for Delta-Sigma A/D Conversion bits
+  settings.VREFCAL     = 0b0;       //Internal Voltage Temperature Coefficient VREFCAL[7:0] Value bits
+  //CONFIG-SETTINGS
+  settings.RESET       = 0b00000000;     //Neither ADC in Reset mode
+  settings.SHUTDOWN    = 0b00000000;     //Neither ADC in Shutdown
+  settings.VREFEXT     = 0b0;            //Internal Voltage Reference Selection bit
+  settings.CLKEXT      = 0b0;            //Internal Clock Selection bit
+  
+  mcp3914.configure(settings);      //Configure the MCP3914 with the settings above
   delay(100);
 }
 
